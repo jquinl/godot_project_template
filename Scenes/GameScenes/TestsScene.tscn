@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://cde4tmk0cef27"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay/TestsScene.gd" id="1_kliej"]
+[ext_resource type="Script" path="res://Scripts/Gameplay/TestCube.gd" id="1_pvsmk"]
+[ext_resource type="PackedScene" uid="uid://brqgaqy3jr22p" path="res://Scenes/UIScenes/PauseMenu.tscn" id="3_vdn6k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3pwcg"]
+sky_top_color = Color(0.0352941, 0.454902, 0.788235, 1)
+sky_horizon_color = Color(0.764706, 0.552941, 0.564706, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_l0xqs"]
+sky_material = SubResource("ProceduralSkyMaterial_3pwcg")
+
+[sub_resource type="Environment" id="Environment_njpuc"]
+background_mode = 2
+sky = SubResource("Sky_l0xqs")
+
+[sub_resource type="GDScript" id="GDScript_boctu"]
+script/source = "extends WorldEnvironment
+class_name  WorldEnvironmentSingle
+
+
+func _ready():
+	var wd = get_tree().get_nodes_in_group(\"WorldEnvironmentGroup\")
+	if( len(wd)>0):
+		queue_free()
+	else:
+		
+"
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_piffa"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qxswd"]
+albedo_color = Color(0.121569, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kjd2j"]
+material = SubResource("StandardMaterial3D_qxswd")
+
+[node name="TestsScene" type="Node3D"]
+script = ExtResource("1_kliej")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." groups=["WorldEnvironmentGroup"]]
+environment = SubResource("Environment_njpuc")
+script = SubResource("GDScript_boctu")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." groups=["DirectionalLightGroup"]]
+transform = Transform3D(0.780998, 0.529479, 0.331202, 0, -0.530319, 0.847798, 0.624534, -0.662128, -0.414178, 0, 1.4658, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 4)
+
+[node name="Plane" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_piffa")
+
+[node name="Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.372179, 0)
+mesh = SubResource("BoxMesh_kjd2j")
+skeleton = NodePath("../Plane")
+script = ExtResource("1_pvsmk")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.985
+anchor_right = 1.0
+offset_left = -47.2002
+offset_top = 26.0
+offset_right = -19.0
+offset_bottom = 85.0
+grow_horizontal = 0
+text = "X"
+
+[node name="PauseMenu" parent="." instance=ExtResource("3_vdn6k")]
+visible = false
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

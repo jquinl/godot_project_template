@@ -1,0 +1,10 @@
+[gd_resource type="Theme" format=3 uid="uid://dq1ugfcjcspsb"]
+
+[resource]
+Button/font_sizes/font_size = 40
+Label/font_sizes/font_size = 40
+MarginContainer/constants/margin_bottom = 25
+MarginContainer/constants/margin_left = 25
+MarginContainer/constants/margin_right = 25
+MarginContainer/constants/margin_top = 25
+TabContainer/font_sizes/font_size = 32

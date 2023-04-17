@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhv6c38e6efmp"]
+
+[ext_resource type="Theme" uid="uid://dq1ugfcjcspsb" path="res://UIThemes/UITheme.tres" id="1_vtmos"]
+[ext_resource type="Script" path="res://Scripts/UIScripts/MainMenu.gd" id="2_wphjy"]
+[ext_resource type="PackedScene" uid="uid://c5li8uqbcbmiv" path="res://Scenes/UIScenes/SettingsMenu.tscn" id="3_edoae"]
+
+[node name="MainScene" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_vtmos")
+color = Color(0, 0, 0, 0)
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = -305.0
+offset_right = 340.0
+offset_bottom = -99.0
+grow_vertical = 0
+script = ExtResource("2_wphjy")
+
+[node name="PlayButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Quit"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("3_edoae")]
+layout_mode = 1
+
+[connection signal="pressed" from="MainMenu/PlayButton" to="MainMenu" method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenu/SettingsButton" to="MainMenu" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenu/QuitButton" to="MainMenu" method="_on_quit_button_pressed"]
