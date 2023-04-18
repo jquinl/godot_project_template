@@ -34,4 +34,4 @@ window/stretch/aspect="expand"
 
 [dotnet]
 
-project/assembly_name="godot_project_template"
+project/assembly_name="godot_template"
