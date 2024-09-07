@@ -19,5 +19,5 @@ rm -rf .git README.md LICENSE
 ```
 git init
 ```
-4. Import the project to godot 4+ using the GUI
-5. Once imported the project can be ranamed with the GUI
+4. Import the project to godot 4+ using the project manager GUI
+5. Once imported the project can be ranamed from the project manager GUI
