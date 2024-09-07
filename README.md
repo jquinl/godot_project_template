@@ -20,8 +20,4 @@ rm -rf .git README.md LICENSE
 git init
 ```
 4. Import the project to godot 4+ using the GUI
-5. Once imported open the `rename_project.gd` script in the script editor
-6. Execute the script (Ctrl+Shift+X) or right click->Run on the script in the editor (Blue cog)
-7. Rename the project
-8. Delete the `rename_project.gd` script
-
+5. Once imported the project can be ranamed with the GUI
